@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Verbs followed by the preposition "à" and "de"</title>
+  <meta name="viewport" content="width=device-width" />
+  <style>
+    body {
+      font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    main {
+      margin: 2rem auto;
+      width: 70%;
+    }
+
+    h1, h2 {
+      font-weight: normal;
+      margin: 0 0 0;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      color: #0f4475;
+    }
+
+    button {
+      display: block;
+      font-size: 1rem;
+      margin: 0 auto;
+      color: white;
+      background-color: #216912;
+      transition: background-color .3s;
+      border: 0;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #b30b5e;
+      cursor: pointer;
+    }
+
+    .verb-list {
+      margin: 1.75rem 0;
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      font-size: 1.2rem;
+    }
+
+    .verb-list li {
+      padding: 10px;
+      width: fit-content;
+      transition: background-color .4s;
+      min-width: 12rem;
+      line-height: 1.3;
+    }
+
+    .verb-list li:hover {
+      cursor: pointer;
+      background-color: #efefef;
+      border-radius: 5px;
+    }
+
+    .red {
+      color: #b30b5e;
+    }
+
+    .green {
+      color: #216912;
+    }
+
+    .a span , .de span {
+      display: none;
+      opacity: 0;
+    }
+
+    .red span, .green span {
+      display: inline;
+      opacity: 100;
+      font-weight: bold;
+    }
+
+    .centred {
+      text-align: center;
+    }
+
+    .centred ul {
+      display: inline-block;
+      width: 50%;
+    }
+
+    .centred li {
+      text-align: left;
+      padding: 0 0 8px;
+      line-height: 1.4;
+    }
+
+    .bm {
+      margin-bottom: 1.5rem;
+    }
+  </style>
+  <script>
+    window.addEventListener("load", function () {
+      const ul = document.querySelector('ul.verb-list');
+      const li = document.querySelectorAll('ul.verb-list li');
+      const resetButton  = document.querySelector('button.reset');
+      // https://stackoverflow.com/questions/7070054/javascript-shuffle-html-list-element-order
+      // Credit: Alexey Lebedev
+      
+      shuffleList = () => {
+        for (var i = ul.children.length; i >= 0; i--) {
+          ul.appendChild(ul.children[Math.random() * i | 0]);
+        }
+      }
+
+
+      li.forEach(li => {
+        li.addEventListener('click', function () {
+          if (this.classList.contains("de")) {
+            this.classList.toggle("red");
+          } else {
+            this.classList.toggle("green");
+          }
+        });
+      });
+
+      resetButton.addEventListener('click', function() {
+        for (var i = 0; i < li.length; i++) {
+          li[i].classList.remove("red", "green");
+        }
+        shuffleList();
+      });
+
+      shuffleList();
+    });
+  </script>
+</head>
+
+<body>
+  <main>
+    <h1 class="centred">Verbes suivis des prépositions « à » et « de »</h1>
+    <p class="centred bm">Test your knowledge of which verb goes with which preposition! Imagine each verb ends in <i>à</i> or <i>de faire qqch</i>.</p>
+    <button class="reset">Reset the list</button>
+    <ul class="verb-list">
+      <li class="a">Continuer <span>à ou de</span></li>
+      <li class="a">Commencer <span>à</span></li>
+      <li class="de">Eviter <span>de</span></li>
+      <li class="de">Décider <span>de</span></li>
+      <li class="a">Hésiter <span>à</span></li>
+      <li class="de">Finir <span>de</span></li>
+      <li class="a">Aider <span>à</span></li>
+      <li class="a">Arriver <span>à</span></li>
+      <li class="a">Chercher <span>à</span></li>
+      <li class="de">Eviter <span>de</span></li>
+      <li class="de">(S') Arrêter <span>de</span></li>
+      <li class="a">Autoriser <span>à</span></li>
+      <li class="a">Encourager <span>à</span></li>
+      <li class="de">Permettre <span>de<br></span></li>
+      <li class="de">Cesser <span>de</span></li>
+      <li class="a">Inviter <span>à</span></li>
+      <li class="a">Penser <span>à</span></li>
+      <li class="de">Choisir <span>de</span></li>
+      <li class="de">Essayer <span>de</span></li>
+      <li class="a">Passer du temps <span>à</span></li>
+      <li class="a">Mettre du temps <span>à</span></li>
+      <li class="a">Perdre du temps <span>à</span></li>
+      <li class="a">Prendre plaisir <span>à</span></li>
+      <li class="a">Réussir/Parvenir <span>à</span></li>
+      <li class="a">Renoncer <span>à</span></li>
+      <li class="a">Tenir <span>à</span></li>
+      <li class="de">Promettre <span>de</span></li>
+      <li class="de">Empêcher <span>de</span></li>
+      <li class="de">Proposer <span>de</span></li>
+      <li class="de">Oublier <span>de</span></li>
+      <li class="de">Refuser <span>de</span></li>
+      <li class="de">Accepter <span>de</span></li>
+      <li class="a">S'attendre <span>à</span></li>
+      <li class="a">Se décider <span>à</span></li>
+      <li class="de">(S') Interdire <span>de</span></li>
+      <li class="de">Persuader <span>de</span></li>
+      <li class="de">Rêver <span>de</span></li>
+      <li class="a">S'habituer <span>à</span></li>
+      <li class="a">Se préparer <span>à</span></li>
+      <li class="de">Mériter <span>de</span></li>
+      <li class="de">Se souvenir <span>de</span></li>
+      <li class="de">Se charger <span>de</span></li>
+      <li class="de">Se dépêcher <span>de</span></li>
+      <li class="a">Se mettre <span>à</span></li>
+      <li class="a">Se forcer <span>à</span></li>
+      <li class="de">S'abstenir <span>de</span></li>
+    </ul>
+    <div class="centred">
+    <h2>Instructions</h2>
+    <ul>
+      <li>Choose a verb and guess if it is followed by <strong><i>à</i></strong> or <strong><i>de</i></strong>.</li>
+      <li>Click on the verb for the answer.</li>
+      <li>If you got it right, choose another verb. If you got it wrong, click on it again to turn it black and then choose another verb.</li>
+      <li><span class="red">Verbs that take <strong><i>de</i></strong> change magenta</span>, whilst <span class="green">verbs that take <strong><i>à</i></strong> change green</span>.</li>
+      <li>Go back and look for the verbs still written in black, and try again.</li>
+      <li>Work on one column at a time if there are too many verbs for you.</li>
+      <li>Click the "Reset the list" button to shuffle the list and start again.</li>
+    </ul>
+    </div>
+  </main>
+</body>
+
+</html>
