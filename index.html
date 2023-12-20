@@ -1,296 +1,536 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Verbs followed by the preposition "à" and "de"</title>
+        <meta name="viewport" content="width=device-width" />
+        <style>
+            body {
+                font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+                font-size: 1rem;
+                color: #333;
+            }
 
-<head>
-    <meta charset="UTF-8" />
-    <title>Verbs followed by the preposition "à" and "de"</title>
-    <meta name="viewport" content="width=device-width" />
-    <style>
-        body {
-            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-            font-size: 1rem;
-            color: #333;
-        }
+            main {
+                margin: 2rem auto;
+                width: 90%;
+            }
 
-        main {
-            margin: 2rem auto;
-            width: 70%;
-        }
+            h1,
+            h2 {
+                font-weight: normal;
+                margin: 0 0 0;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                color: #0f4475;
+            }
 
-        h1,
-        h2 {
-            font-weight: normal;
-            margin: 0 0 0;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            color: #0f4475;
-        }
+            button {
+                display: block;
+                font-size: 1rem;
+                margin: 0 auto;
+                color: white;
+                background-color: #216912;
+                transition: background-color 0.3s;
+                border: 0;
+                padding: 8px 12px;
+                border-radius: 5px;
+            }
 
-        button {
-            display: block;
-            font-size: 1rem;
-            margin: 0 auto;
-            color: white;
-            background-color: #216912;
-            transition: background-color 0.3s;
-            border: 0;
-            padding: 8px 12px;
-            border-radius: 5px;
-        }
+            button:hover {
+                background-color: #b30b5e;
+                cursor: pointer;
+            }
 
-        button:hover {
-            background-color: #b30b5e;
-            cursor: pointer;
-        }
+            .verb-list {
+                margin: 1.75rem 0;
+                list-style: none;
+                padding: 0;
+                font-size: 1.2rem;
+            }
 
-        .verb-list {
-            margin: 1.75rem 0;
-            list-style: none;
-            padding: 0;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            font-size: 1.2rem;
-        }
+            .verb-list li {
+                padding: 10px;
+                width: fit-content;
+                transition: background-color 0.4s;
+                min-width: 12rem;
+                line-height: 1.2;
+            }
 
-        .verb-list li {
-            padding: 10px;
-            width: fit-content;
-            transition: background-color 0.4s;
-            min-width: 12rem;
-            line-height: 1.2;
-        }
+            .verb-list li:hover {
+                cursor: pointer;
+                background-color: #efefef;
+                border-radius: 5px;
+            }
 
-        .verb-list li:hover {
-            cursor: pointer;
-            background-color: #efefef;
-            border-radius: 5px;
-        }
+            .red {
+                color: #b30b5e;
+            }
 
-        .red {
-            color: #b30b5e;
-        }
+            .green {
+                color: #216912;
+            }
 
-        .green {
-            color: #216912;
-        }
+            .a span,
+            .de span {
+                display: none;
+                opacity: 0;
+            }
 
-        .a span,
-        .de span {
-            display: none;
-            opacity: 0;
-        }
+            .red span,
+            .green span {
+                display: inline;
+                opacity: 100;
+                font-weight: bold;
+            }
 
-        .red span,
-        .green span {
-            display: inline;
-            opacity: 100;
-            font-weight: bold;
-        }
+            span q {
+                color: #666;
+                font-weight: normal;
+                font-style: italic;
+                font-size: 1rem;
+            }
 
-        span q {
-            color: #666;
-            font-weight: normal;
-            font-style: italic;
-            font-size: 1rem;
-        }
+            q:before,
+            q:after {
+                content: "";
+            }
 
-        q:before,
-        q:after {
-            content: "";
-        }
+            .centred {
+                text-align: center;
+            }
 
-        .centred {
-            text-align: center;
-        }
+            .centred ul {
+                display: inline-block;
+            }
 
-        .centred ul {
-            display: inline-block;
-            width: 50%;
-        }
+            .centred li {
+                text-align: left;
+                padding: 0 0 8px;
+                line-height: 1.4;
+            }
 
-        .centred li {
-            text-align: left;
-            padding: 0 0 8px;
-            line-height: 1.4;
-        }
+            .bm {
+                margin-bottom: 1.5rem;
+            }
 
-        .bm {
-            margin-bottom: 1.5rem;
-        }
-    </style>
-    <script>
-        window.addEventListener("load", function () {
-            const ul = document.querySelector("ul.verb-list");
-            const li = document.querySelectorAll("ul.verb-list li");
-            const resetButton = document.querySelector("button.reset");
-            // https://stackoverflow.com/questions/7070054/javascript-shuffle-html-list-element-order
-            // Credit: Alexey Lebedev
-
-            shuffleList = () => {
-                for (var i = ul.children.length; i >= 0; i--) {
-                    ul.appendChild(ul.children[(Math.random() * i) | 0]);
+            @media only screen and (min-width: 600px) and (max-width: 760px) {
+                main {
+                    margin: 2rem auto;
+                    width: 80%;
                 }
-            };
 
-            li.forEach((li) => {
-                li.addEventListener("click", function () {
-                    if (this.classList.contains("de")) {
-                        this.classList.toggle("red");
-                    } else {
-                        this.classList.toggle("green");
+                .verb-list {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .centred ul {
+                    width: 90%;
+                }
+            }
+
+            @media (min-width: 761px) {
+                .verb-list {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                }
+
+                .centred ul {
+                    width: 50%;
+                }
+            }
+        </style>
+        <script>
+            window.addEventListener("load", function () {
+                const ul = document.querySelector("ul.verb-list");
+                const li = document.querySelectorAll("ul.verb-list li");
+                const resetButton = document.querySelector("button.reset");
+                // https://stackoverflow.com/questions/7070054/javascript-shuffle-html-list-element-order
+                // Credit: Alexey Lebedev
+
+                shuffleList = () => {
+                    for (var i = ul.children.length; i >= 0; i--) {
+                        ul.appendChild(ul.children[(Math.random() * i) | 0]);
                     }
-                });
-            });
+                };
 
-            resetButton.addEventListener("click", function () {
-                for (var i = 0; i < li.length; i++) {
-                    li[i].classList.remove("red", "green");
-                }
+                li.forEach((li) => {
+                    li.addEventListener("click", function () {
+                        if (this.classList.contains("de")) {
+                            this.classList.toggle("red");
+                        } else {
+                            this.classList.toggle("green");
+                        }
+                    });
+                });
+
+                resetButton.addEventListener("click", function () {
+                    for (var i = 0; i < li.length; i++) {
+                        li[i].classList.remove("red", "green");
+                    }
+                    shuffleList();
+                });
+
                 shuffleList();
             });
+        </script>
+    </head>
 
-            shuffleList();
-        });
-    </script>
-</head>
-
-<body>
-    <main>
-        <h1 class="centred">Verbes suivis des prépositions « à » et « de »</h1>
-        <p class="centred bm">
-            Test your knowledge of which verb goes with which preposition! Imagine
-            each verb ends in <i>à</i> or <i>de faire qqch</i>.
-        </p>
-        <button class="reset">Reset the list</button>
-        <ul class="verb-list">
-            <li class="a">
-                Continuer
-                <span>à ou de<br /><q>Il a continué à dormir/Il a continué de fumer. (habitude)</q></span>
-            </li>
-            <!-- https://www.lefigaro.fr/langue-francaise/expressions-francaises/2017/09/04/37003-20170904ARTFIG00009-continuer-a-ou-continuer-de-ne-faites-plus-la-faute.php -->
-            <li class="a">
-                Commencer
-                <span>à<br /><q>Elle a commencé à travailler à l'âge de 16 ans.</q></span>
-            </li>
-            <li class="de">
-                Eviter <span>de<br /><q>L'avare évite de dépenser l'argent.</q></span>
-            </li>
-            <li class="de">
-                Décider
-                <span>de<br /><q>J'ai décidé de m'inscrire au cours de danse.</q></span>
-            </li>
-            <li class="a">
-                Hésiter
-                <span>à<br /><q>J'hésite à entreprendre des travaux dans mon jardin.</q></span>
-            </li>
-            <li class="de">
-                Finir <span>de<br /><q>Camille a fini de faire ses devoirs.</q></span>
-            </li>
-            <li class="a">
-                Aider
-                <span>à<br /><q>Une bonne alimentation peut vous aider à perdre du poids.</q></span>
-            </li>
-            <li class="a">
-                Arriver
-                <span>à<br /><q>J'ai arrivé enfin à nager un kilomètre.</q></span>
-            </li>
-            <li class="a">
-                Chercher
-                <span>à<br /><q>Elle cherche toujours à gagner de l'argent.</q></span>
-            </li>
-            <li class="de">
-                (S') Arrêter
-                <span>de<br /><q>Mon fils a arrêté de compter sur ses doigts après 7 ans.</q></span>
-            </li>
-            <li class="a">
-                Autoriser
-                <span>à<br /><q>Les parents ont autorisé leur fille à rentrer après 20 h ce
-                        soir.</q></span>
-            </li>
-            <li class="a">
-                Encourager
-                <span>à<br /><q>Mon frère m'a encouragé à apprendre à dessiner.</q></span>
-            </li>
-            <li class="de">
-                Permettre
-                <span>de<br /><q>Je me suis permis d'espérer que je gagnerais.</q></span>
-            </li>
-            <li class="de">
-                Cesser
-                <span>de<br /><q>Mon oncle ne cesse pas de m'importuner.</q></span>
-            </li>
-            <li class="a">
-                Inviter <span>à<br /><q>La mer m'invite à nager.</q></span>
-            </li>
-            <li class="a">Penser <span>à<br /><q>As-tu pensé à prendre les clés en sortant ?</q></span></li>
-            <li class="de">Choisir <span>de<br /><q>Elle peut choisir de faire ce qu'elle aime dans la vie.</q></span>
-            </li>
-            <li class="de">Essayer <span>de<br /><q>J'essaye de faire de beaux films.</q></span></li>
-            <li class="a">Passer du temps <span>à<br><q>Ils aiment passer du temps à lire.</q></span>
-            </li>
-            <li class="a">Mettre du temps <span>à<br><q>La réorganisation va mettre du temps à produire ses
-                        effets.</q></span></li>
-            <li class="a">Perdre du temps <span>à<br><q>J'ai perdu du temps à la chercher.</q></span></li>
-            <li class="a">Prendre plaisir <span>à<br><q>Elles prennent plaisir à des activités sociales.</q></span></li>
-            <li class="a">Réussir/Parvenir <span>à<br><q>Il a réussi à gravir la montagne.</q></span></li>
-            <li class="a">
-                Renoncer
-                <span>à<br /><q>Ils veulent renoncer à leurs armes.</q></span>
-            </li>
-            <li class="a">Tenir <span>à<br><q>Nous tenons à des traditions anciennes.</q></span></li>
-            <li class="de">Promettre <span>de<br><q>L'argent me permet de voyager.</q></span></li>
-            <li class="de">Empêcher <span>de<br><q>Rien ne m'empêchera de écrire.</q></span></li>
-            <li class="de">Proposer <span>de<br><q>Elle a proposé de négocier un nouveau contrat.</q></span></li>
-            <li class="de">Oublier <span>de<br><q>Ne pas oublier de toujours porter une bouteille d'eau.</q></span></li>
-            <li class="de">Refuser <span>de<br><q>Vous pouvez refuser de répondre aux questions.</q></span></li>
-            <li class="de">Accepter <span>de<br><q>Ils ont accepté de changer leurs habitudes.</q></span></li>
-            <li class="a">S'attendre <span>à<br><q>On peut s'attendre à voir de nouveaux joueurs avec le temps.</q></span></li>
-            <li class="a">Se décider <span>à<br><q>Il s'est décidé à faire mieux.</q></span></li>
-            <li class="de">(S') Interdire <span>de<br><q>Les termes et conditions vous interdisent de partager votre contenu.</q></span></li>
-            <li class="de">Persuader <span>de<br><q>Les vendeurs n'ont pas réussi à le persuader de partir.</q></span></li>
-            <li class="de">Rêver <span>de<br><q>Elle a rêvé de devenir médecin.</q></span></li>
-            <li class="a">S'habituer <span>à<br><q>Ils ont doucement commencé à s'habituer à leur nouvel environnement.</q></span></li>
-            <li class="a">Se préparer <span>à<br><q>Il s'est préparée à rapporter la situation.</q></span></li>
-            <li class="de">Mériter <span>de<br><q>L'histoire mérite d'être remarqué par tout le monde. </q></span></li>
-            <li class="de">Se souvenir <span>de<br><q>Elles se souviennent de Madam Pellaprat.</q></span></li>
-            <li class="de">Se charger <span>de<br><q>Je me charge d'envoyer les invitations.</q></span></li>
-            <li class="de">Se dépêcher <span>de<br><q>Je me lève en retard et me dépêche de me préparer.</q></span></li>
-            <li class="a">
-                Se mettre
-                <span>à<br /><q>L'avion a pris de la vitesse et il s'est mis à voler.</q></span>
-            </li>
-            <li class="a">Se forcer <span>à<br><q>Je me suis forcé à être constamment en alerte.</q></span></li>
-            <li class="de">S'abstenir <span>de<br><q>Ils ont préféré s'abstenir de venir à la fête.</q></span></li>
-        </ul>
-        <div class="centred">
-            <h2>Instructions</h2>
-            <ul>
-                <li>
-                    Choose a verb and guess if it is followed by
-                    <strong><i>à</i></strong> or <strong><i>de</i></strong>.
+    <body>
+        <main>
+            <h1 class="centred">Verbes suivis des prépositions « à » et « de »</h1>
+            <p class="centred bm">Test your knowledge of which verb goes with which preposition! Imagine each verb ends in <i>à</i> or <i>de faire qqch</i>.</p>
+            <button class="reset">Reset the list</button>
+            <ul class="verb-list">
+                <li class="a">
+                    Continuer
+                    <span>
+                        à ou de<br />
+                        <q>Il a continué à dormir/Il a continué de fumer. (habitude)</q>
+                    </span>
                 </li>
-                <li>Click on the verb for the answer.</li>
-                <li>
-                    If you got it right, choose another verb. If you got it wrong, click
-                    on it again to turn it black and then choose another verb.
+                <!-- https://www.lefigaro.fr/langue-francaise/expressions-francaises/2017/09/04/37003-20170904ARTFIG00009-continuer-a-ou-continuer-de-ne-faites-plus-la-faute.php -->
+                <li class="a">
+                    Commencer
+                    <span>
+                        à<br />
+                        <q>Elle a commencé à travailler à l'âge de 16 ans.</q>
+                    </span>
                 </li>
-                <li>
-                    <span class="red">Verbs that take <strong><i>de</i></strong> change magenta</span>, whilst
-                    <span class="green">verbs that take <strong><i>à</i></strong> change green</span>.
+                <li class="de">
+                    Eviter
+                    <span>
+                        de<br />
+                        <q>L'avare évite de dépenser l'argent.</q>
+                    </span>
                 </li>
-                <li>
-                    Go back and look for the verbs still written in black, and try
-                    again.
+                <li class="de">
+                    Décider
+                    <span>
+                        de<br />
+                        <q>J'ai décidé de m'inscrire au cours de danse.</q>
+                    </span>
                 </li>
-                <li>
-                    Work on one column at a time if there are too many verbs for you.
+                <li class="a">
+                    Hésiter
+                    <span>
+                        à<br />
+                        <q>J'hésite à entreprendre des travaux dans mon jardin.</q>
+                    </span>
                 </li>
-                <li>
-                    Click the "Reset the list" button to shuffle the list and start
-                    again.
+                <li class="de">
+                    Finir
+                    <span>
+                        de<br />
+                        <q>Camille a fini de faire ses devoirs.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    Aider
+                    <span>
+                        à<br />
+                        <q>Une bonne alimentation peut vous aider à perdre du poids.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    Arriver
+                    <span>
+                        à<br />
+                        <q>J'ai arrivé enfin à nager un kilomètre.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    Chercher
+                    <span>
+                        à<br />
+                        <q>Elle cherche toujours à gagner de l'argent.</q>
+                    </span>
+                </li>
+                <li class="de">
+                    (S') Arrêter
+                    <span>
+                        de<br />
+                        <q>Mon fils a arrêté de compter sur ses doigts après 7 ans.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    Autoriser
+                    <span>
+                        à<br />
+                        <q>Les parents ont autorisé leur fille à rentrer après 20 h ce soir.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    Encourager
+                    <span>
+                        à<br />
+                        <q>Mon frère m'a encouragé à apprendre à dessiner.</q>
+                    </span>
+                </li>
+                <li class="de">
+                    Permettre
+                    <span>
+                        de<br />
+                        <q>Je me suis permis d'espérer que je gagnerais.</q>
+                    </span>
+                </li>
+                <li class="de">
+                    Cesser
+                    <span>
+                        de<br />
+                        <q>Mon oncle ne cesse pas de m'importuner.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    Inviter
+                    <span>
+                        à<br />
+                        <q>La mer m'invite à nager.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    Penser
+                    <span>
+                        à<br />
+                        <q>As-tu pensé à prendre les clés en sortant ?</q>
+                    </span>
+                </li>
+                <li class="de">
+                    Choisir
+                    <span>
+                        de<br />
+                        <q>Elle peut choisir de faire ce qu'elle aime dans la vie.</q>
+                    </span>
+                </li>
+                <li class="de">
+                    Essayer
+                    <span>
+                        de<br />
+                        <q>J'essaye de faire de beaux films.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    Passer du temps
+                    <span>
+                        à<br />
+                        <q>Ils aiment passer du temps à lire.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    Mettre du temps
+                    <span>
+                        à<br />
+                        <q>La réorganisation va mettre du temps à produire ses effets.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    Perdre du temps
+                    <span>
+                        à<br />
+                        <q>J'ai perdu du temps à la chercher.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    Prendre plaisir
+                    <span>
+                        à<br />
+                        <q>Elles prennent plaisir à des activités sociales.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    Réussir/Parvenir
+                    <span>
+                        à<br />
+                        <q>Il a réussi à gravir la montagne.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    Renoncer
+                    <span>
+                        à<br />
+                        <q>Ils veulent renoncer à leurs armes.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    Tenir
+                    <span>
+                        à<br />
+                        <q>Nous tenons à des traditions anciennes.</q>
+                    </span>
+                </li>
+                <li class="de">
+                    Promettre
+                    <span>
+                        de<br />
+                        <q>L'argent me permet de voyager.</q>
+                    </span>
+                </li>
+                <li class="de">
+                    Empêcher
+                    <span>
+                        de<br />
+                        <q>Rien ne m'empêchera de écrire.</q>
+                    </span>
+                </li>
+                <li class="de">
+                    Proposer
+                    <span>
+                        de<br />
+                        <q>Elle a proposé de négocier un nouveau contrat.</q>
+                    </span>
+                </li>
+                <li class="de">
+                    Oublier
+                    <span>
+                        de<br />
+                        <q>Ne pas oublier de toujours porter une bouteille d'eau.</q>
+                    </span>
+                </li>
+                <li class="de">
+                    Refuser
+                    <span>
+                        de<br />
+                        <q>Vous pouvez refuser de répondre aux questions.</q>
+                    </span>
+                </li>
+                <li class="de">
+                    Accepter
+                    <span>
+                        de<br />
+                        <q>Ils ont accepté de changer leurs habitudes.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    S'attendre
+                    <span>
+                        à<br />
+                        <q>On peut s'attendre à voir de nouveaux joueurs avec le temps.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    Se décider
+                    <span>
+                        à<br />
+                        <q>Il s'est décidé à faire mieux.</q>
+                    </span>
+                </li>
+                <li class="de">
+                    (S') Interdire
+                    <span>
+                        de<br />
+                        <q>Les termes et conditions vous interdisent de partager votre contenu.</q>
+                    </span>
+                </li>
+                <li class="de">
+                    Persuader
+                    <span>
+                        de<br />
+                        <q>Les vendeurs n'ont pas réussi à le persuader de partir.</q>
+                    </span>
+                </li>
+                <li class="de">
+                    Rêver
+                    <span>
+                        de<br />
+                        <q>Elle a rêvé de devenir médecin.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    S'habituer
+                    <span>
+                        à<br />
+                        <q>Ils ont doucement commencé à s'habituer à leur nouvel environnement.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    Se préparer
+                    <span>
+                        à<br />
+                        <q>Il s'est préparée à rapporter la situation.</q>
+                    </span>
+                </li>
+                <li class="de">
+                    Mériter
+                    <span>
+                        de<br />
+                        <q>L'histoire mérite d'être remarqué par tout le monde. </q>
+                    </span>
+                </li>
+                <li class="de">
+                    Se souvenir
+                    <span>
+                        de<br />
+                        <q>Elles se souviennent de Madam Pellaprat.</q>
+                    </span>
+                </li>
+                <li class="de">
+                    Se charger
+                    <span>
+                        de<br />
+                        <q>Je me charge d'envoyer les invitations.</q>
+                    </span>
+                </li>
+                <li class="de">
+                    Se dépêcher
+                    <span>
+                        de<br />
+                        <q>Je me lève en retard et me dépêche de me préparer.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    Se mettre
+                    <span>
+                        à<br />
+                        <q>L'avion a pris de la vitesse et il s'est mis à voler.</q>
+                    </span>
+                </li>
+                <li class="a">
+                    Se forcer
+                    <span>
+                        à<br />
+                        <q>Je me suis forcé à être constamment en alerte.</q>
+                    </span>
+                </li>
+                <li class="de">
+                    S'abstenir
+                    <span>
+                        de<br />
+                        <q>Ils ont préféré s'abstenir de venir à la fête.</q>
+                    </span>
                 </li>
             </ul>
-        </div>
-    </main>
-</body>
-
+            <div class="centred">
+                <h2>Instructions</h2>
+                <ul>
+                    <li>
+                        Choose a verb and guess if it is followed by
+                        <strong><i>à</i></strong> or <strong><i>de</i></strong>.
+                    </li>
+                    <li>Click on the verb for the answer.</li>
+                    <li>
+                        If you got it right, choose another verb. If you got it wrong, click on it again to turn it black and then choose another verb.
+                    </li>
+                    <li>
+                        <span class="red">
+                            Verbs that take <strong><i>de</i></strong> change magenta
+                        </span>
+                        , whilst
+                        <span class="green">
+                            verbs that take <strong><i>à</i></strong> change green
+                        </span>
+                        .
+                    </li>
+                    <li>
+                        Go back and look for the verbs still written in black, and try again.
+                    </li>
+                    <li>
+                        Work on one column at a time if there are too many verbs for you.
+                    </li>
+                    <li>
+                        Click the "Reset the list" button to shuffle the list and start again.
+                    </li>
+                </ul>
+            </div>
+        </main>
+    </body>
 </html>
