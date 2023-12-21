@@ -7,4 +7,9 @@ Contains a couple of quick test pages to help revise which French verbs are used
 
  This was also an experiment to make a page with zero dependencies: no theme, no CSS library, no Google font, no Javascript framework and no site generator.
 
+ ## To do
+  - Add the GitHub repo link to the web page.
+  - Allow colour change for red-green colour blindness.
+  - Make click events accessible.
+
 
