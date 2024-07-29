@@ -11,5 +11,6 @@ Contains a couple of quick test pages to help revise which French verbs are used
   - Add the GitHub repo link to the web page.
   - Allow colour change for red-green colour blindness.
   - Make click events accessible.
+  - Check grammar of examples.
 
 
