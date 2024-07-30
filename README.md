@@ -7,6 +7,8 @@ Contains a couple of quick test pages to help revise which French verbs are used
 
 Blah
 
+Blah
+
 This was also an experiment to make a page with zero dependencies: no theme, no CSS library, no Google font, no Javascript framework and no site generator.
 
  ## To do
